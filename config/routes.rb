@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   resources :actors
 
+  #resources :magazines do
+  #  resources :ads
+  #end
+  
   root 'static_pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

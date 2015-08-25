@@ -6,6 +6,8 @@
       <th>Name</th>
       <th>File</th>
       <th>Id</th>
+      <th>Movie</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
         <td><%= actor.name %></td>
         <td><%= actor.file %></td>
         <td><%= actor.id %></td>
+        <td><%= actor.movie_id %></td>
+
         <td><%= link_to 'Show', actor %></td>
         <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
         <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,6 +28,39 @@
   </tbody>
 </table>
 
-<br>
+ <!-- can't figure out how to link randomize with this -->
+ <!-- what to do if the link doesn't display image -->
+ <!-- overflow hidden --> 
+<!--
+    <% @actors.each do |actor| %>
+      <%= actor.name %> 
+      <img src =<%= actor.file %> width = '200px', height = '200px' overflow= 'hidden'>
+
+    <% end %>
+
+  -->
+
+    <% actor_array = @actors.find_random_actors %>
+
+  <table>
+    <tbody>
+      <% actor_array.each do |iter| %>
+      <tr>
+        <td><img src =<%= iter.file %> width = '200px', height = '200px'>
+          <%= iter.id %>
+        </td>
+        <td><% actor_array.each do |person| %>
+            <%= person.name %>
+            <%= person.id %>
+            <!-- if iter.id matches the person id that you choose then you get a point -->
+            <br>
+          <% end %>
+        </td>
+      </tr>
+
+  <% end %>
+
+   </tbody>
+  </table>
 
 <%= link_to 'New Actor', new_actor_path %>
