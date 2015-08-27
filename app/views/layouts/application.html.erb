@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MovieMatcher</title>
+  <title>Paw-parazzi</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,12 +12,17 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
+  <link rel="stylesheet" href="/assets/custom.css" >
+
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  <link rel="shortcut icon" type="image/ico" href="http://www.dreamtemplate.com/dreamcodes/web_icons/gray-camera-icon.png" />
+
 </head>
 <body>
-
-<%= yield %>
+      <%= yield %>
 
 </body>
 </html>

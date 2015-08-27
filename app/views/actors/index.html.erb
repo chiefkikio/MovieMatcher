@@ -1,4 +1,7 @@
 <h1>Listing actors</h1>
+List instructions here:
+Match the name of the actor or actress with their picture! If 
+
 
 <table>
   <thead>
@@ -28,39 +31,64 @@
   </tbody>
 </table>
 
+
  <!-- can't figure out how to link randomize with this -->
  <!-- what to do if the link doesn't display image -->
  <!-- overflow hidden --> 
-<!--
-    <% @actors.each do |actor| %>
-      <%= actor.name %> 
-      <img src =<%= actor.file %> width = '200px', height = '200px' overflow= 'hidden'>
-
-    <% end %>
-
-  -->
 
     <% actor_array = @actors.find_random_actors %>
+    <% actor_array_json = actor_array.to_json %>
+
+    <script type="text/javascript">
+
+    var actor_array_js = <%= raw actor_array.to_json %>
+
+    function check_answers(){
+      var points = 0;
+      var array_of_forms = []; 
+      for (i = 0; i < actor_array_js.length; i++) {
+        var id = "answer" + i;
+    
+        if (actor_array_js[i].id == document.getElementById(id).value){
+          points = points + 1;
+        }
+      }
+      console.log(points);
+      window.location = '/game?points='+points;
+    }
+      </script>
 
   <table>
     <tbody>
+      <form method="post" action="/game">        
+       
+      <% iterator = 0 %>
+      <script type="text/javascript">
+        </script>
+
       <% actor_array.each do |iter| %>
       <tr>
-        <td><img src =<%= iter.file %> width = '200px', height = '200px'>
-          <%= iter.id %>
-        </td>
-        <td><% actor_array.each do |person| %>
-            <%= person.name %>
-            <%= person.id %>
-            <!-- if iter.id matches the person id that you choose then you get a point -->
-            <br>
-          <% end %>
+        <td><img src =<%= iter.file %> width = '200px', height = '200px'></td>
+        <td>
+          <select id="answer<%= iterator %>" >
+            <% actor_array.each do |person| %>
+              <option value=<%=person.id %>><%= person.name %></option>
+              <%= person.id %>
+            <% end %>
+
+            <script type="text/javascript">
+              <% iterator = iterator + 1 %>
+            </script> 
+
+          </select>
         </td>
       </tr>
-
   <% end %>
+
+  <tr>
+    <td>
+     <input type="button" onclick="check_answers()" value="Submit" class="btn btn-default">
+    </td></tr>
 
    </tbody>
   </table>
-
-<%= link_to 'New Actor', new_actor_path %>
