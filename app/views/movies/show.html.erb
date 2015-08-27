@@ -1,9 +1,93 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @movie.title %>
-</p>
+<div class= "container">
+	<div class = "row-centered">
+		<h2>Paw-parazzi</h2>
+		<p> Stalking the actors from: <%= @movie.title %></p> 
+		<br>		
+		<hr>
+		<h4>How to play:</h4>
+		Match the actors' photos with their names! Yup, it's that easy.
+		<hr>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+		<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-alert"></span><b>  BUT WAIT</b> OMG YOU ONLY HAVE <span id="timer"></span> SECONDS.</div>
+
+
+ 		<% actor_array_json = @actors.to_json %>
+ 		<% shuffled_actors = @actors.shuffle %>
+
+   		<script type="text/javascript">
+
+    	var actor_array_js = <%= raw @actors.to_json %>
+
+    	function check_answers(){
+      		var points = 0;
+      		var array_of_forms = []; 
+      		for (i = 0; i < actor_array_js.length; i++) {
+        		var id = "answer" + i;
+    
+        		if (actor_array_js[i].id == document.getElementById(id).value){
+          			points = points + 1;
+        		}
+      		}
+      		window.location = '/game?points='+points;
+    	}
+      	</script>
+
+  		<table>
+    	<tbody>
+      	<form method="post" action="/game">        
+       
+      	<% iterator = 0 %>
+      	<% @actors.each do |iter| %>
+	      	<tr>
+	        	<td><img src =<%= iter.file %> width = '200px', height = '200px'></td>
+	        	<td>
+	          		<select id="answer<%= iterator %>" class="form-control">
+	            		<% shuffled_actors.each do |person| %>
+	              			<option value=<%=person.id %>><%= person.name %></option>
+	            		<% end %>
+
+	            		<script type="text/javascript">
+	              			<% iterator = iterator + 1 %>
+	            		</script> 
+
+	          		</select>
+	        	</td>
+	       </tr>
+  	<% end %>
+
+  	<tr>
+    	<td>
+     		<input type="button" onclick="check_answers()" value="Submit" class="btn btn-success">
+     		<br>
+    	</td>
+    	<td>
+    		<input type="button" onclick="location.reload()" value="Halp! An image didn't load!" class="btn btn-warning">
+		</td>
+   </tr>
+
+  </tbody>
+ </table>
+</div>
+</div>
+
+<script type="text/javascript">
+var count=30;
+var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
+
+function timer()
+{
+  count=count-1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     check_answers();
+     return;
+  }
+
+	document.getElementById("timer").innerHTML=count;
+
+}
+
+</script>
+

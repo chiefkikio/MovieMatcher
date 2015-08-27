@@ -1,21 +1,42 @@
-<div class="container-fluid">
-	<div class="row">
-  		<div class="col-md-6 col-md-offset-4">
-			Play the game.
+<div class="container">
+	<div class="row-centered">
+		<div class= "col-md-12">
+			<br><br>
 			 <script type="text/javascript">
 			 var points = location.search.split('points=')[1]
-			 console.log(points);
-			 if (points == 1){
-			 	document.write("You got 1/5 correct!");
+			 if(points < 1){
+			 	document.write("<img src='http://cdn0.stocksy.com/a/M84000/z0/15894.jpg' class='img-rounded'><br><p class='center'>You got less than 1 correct. You must have had to try to be this bad.</p> ");
 			 }
-			 else{
-			 	document.write("You got more than 1 correct!");
+			 else if (points == 1){
+			 	document.write("<img src='http://i.huffpost.com/gen/1043009/images/o-LIL-BUB-AND-FRIENDZ-TRAILER-facebook.jpg' class='img-rounded'><br><p class='center'>You only got 1/5 correct! Poor Pierre is going to get fired. </p>");
+
+			 }
+			 else if(points == 2){
+			 	document.write("<img src='http://petsadviser.supercopyeditors.netdna-cdn.com/wp-content/uploads/2012/06/why-is-cat-scared-rain-thunder.png' class='img-rounded'> <br> <p class='center'><br>meow. You got 2/5 correct. Pierre barely scraped by.</p> ")
+			 }
+
+			 else if (points == 3){
+			 	document.write("<img src='http://cdn.petplace.com/images/default-source/Featured-Wide-Large/8746_cats.jpg?sfvrsn=3' class='img-rounded'><br> <p class='center'>You got 3/5 correct. You are incredibly average</p>");
+			 }
+			 else if (points == 4){
+			 	document.write("<img src='https://fuzfeed.com/wp-content/uploads/2015/05/happy_cat_is_happy_by_anarosaphotography-d4ddoh1-640x420.jpg' class='img-rounded'><br><p class='center'> You got 4/5 correct. You are pretty awesome</p>");
+			 }
+			 else if(points == 5){
+			 	document.write("<img src='http://cdn2.hellogiggles.com/wp-content/uploads/2014/08/08/smiling-cat.jpg?123' class='img-rounded'><br><p class='center'>You got 5/5 correct! It's ok. I won't tell everyone how long you spend catching up on celebrity gossip every day!</p>");
 
 			 	console.log("poop");
 			 }
+			 else{
+			 	document.write("<img src='http://i.ytimg.com/vi/Y9TiP9hFTdA/maxresdefault.jpg' class='img-rounded'>")
+			 	document.write("<p class='center'>I SEE YOU CHEATING!!!!</p>")
+			 }
 
 			 </script>
-			 poop on a stick. 
+
+<br><br><br>
+<a href="/"><input type="button" onclick="" value="One moar tiiiiiiime" class="btn btn-default"></a>
+<br>https://fuzfeed.com/wp-content/uploads/2015/05/Photo-2015-05-01-11_18-5.jpg
+
 		</div>
 	</div>
 </div>

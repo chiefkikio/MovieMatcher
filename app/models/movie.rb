@@ -9,6 +9,8 @@ class Movie < ActiveRecord::Base
 	  #automatically just goes for the first movie if there are movies with the same name cuz it's a feature. 
 	  new_movie = movie_list.movies.first 
 	  id = new_movie.id
+	  self.imdb_id = id
+	  self.save
 	  
 	  i = Imdb::Movie.new("#{id}")
 	  i.cast_members.each do |actor_name|
@@ -17,7 +19,10 @@ class Movie < ActiveRecord::Base
 	  	actor =  self.actors.build(:name => actor_name, :file => actor_image_url)
 	  	actor.save
 	  end
+	end
 
+	def find_random_actors
+		self.actors.order("RANDOM()").first(5)	
 	end
 
 end

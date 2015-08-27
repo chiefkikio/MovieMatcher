@@ -10,6 +10,8 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    @movie = Movie.find(params[:id])
+    @actors = @movie.find_random_actors
   end
 
   # GET /movies/new
