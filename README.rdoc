@@ -1,4 +1,24 @@
 == README
 
 Designed and created by Lanya Butler (lanya.butler@att.net).
-This will be a simple matching game. 
+This is a simple matching game. 
+
+<b>General Set up:</b>
+00. There is a movie database waiting to receive titles. There is also an actor databases that belongs_to movies.
+01. User inputs movie title in form (this creates a new movie in database)
+02. fill_actors_table which gets called after_create movie fills in actor table with actor names and image url’s using gems in the movie model.
+03. The page refreshes displaying a grid of actors' photos with options for names. Either 30 seconds go by (yay extra feature is a timer to make people PANIC) or the user hits submit. They are redirected to a page with their score and a snarky cat photo. 
+
+
+<b>Some design flaws:</b> 
+- Admittedly I only had time to check how it looks on my 14" macbook. It's not optimized for the phone although it should be responsive enough that you could use it on there. If I had more time I would have adjusted the styling with media queries so the font is bigger. 
+
+- There is a lag time from when a movie is inputted to when the grid appears. It got especially bad when put on Heroku. My quick fix solution from a user experience side is to just let users know with ugly text but it would have been way nicer to have a loading bar or something. 
+
+- The code doesn't check to make sure it has an exact match for a movie title. As a result, if you type a nonexistant movie in the form, you would still get back the closest matching movie. 
+
+- The code also will just choose the first option of movies if there are multiple similar titles. For example, if you type in "Lord of the Rings" it would return characters from the Fellowship of the Rings. If I had more time it would have been nice to be given a selection of movies and be able to choose which one. 
+
+- You can cheat by typing in the amount of points as a url parameter. There is a small easter egg if you throw in a nonvalid point. In the future, I'd find a more secure way to pass points. 
+
+- The images that are saved are the first ones that appear in a google image search. Sometimes, the page will try to display a broken link. We're also displaying hotlinks which is...rude  :P If I had more time i'd use paperclip or some similar gem to store the actual file. Then I wouldn't have to worry about the links going down either. In the mean time, it would be cool to either have a method of marking a image as broken and have them save a new image link or just have them not show up.
