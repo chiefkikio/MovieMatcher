@@ -3,9 +3,9 @@
 one:
   name: MyString
   file: MyString
-  id: 1
+  actor_id: 1
 
 two:
   name: MyString
   file: MyString
-  id: 1
+  actor_id: 1
